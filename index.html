@@ -1,0 +1,509 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="ПОМЕХИ"><meta name="theme-color" content="#000000"><title>ПОМЕХИ</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Geologica:wght@400;500;700;800&family=Oi&family=Poiret+One&display=swap"><style>
+:root{--bg:#000;--fg:#fff;--neon:#37FF08;--ink:#000;--dim:#8f8f8f;--soft:#cfcfcf;--line:#2b2b2b;--f:Arial,"Helvetica Neue",Helvetica,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+body{font-family:var(--f);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+.wrap{max-width:660px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:max(22px,env(safe-area-inset-top,0px)) max(56px,env(safe-area-inset-bottom,0px))}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--neon);outline-offset:3px}
+a{color:var(--fg)}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:700;line-height:1;text-wrap:balance}
+h1{font-size:clamp(52px,16vw,96px);letter-spacing:-.04em}
+h2{font-size:clamp(28px,8vw,40px);letter-spacing:-.03em;text-transform:uppercase}
+h3{font-size:17px;letter-spacing:-.01em}
+.lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.neon{color:var(--neon)}
+.dim{color:var(--dim)}
+.soft{color:var(--soft)}
+.stack{display:flex;flex-direction:column;gap:14px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.back{font-size:14px;color:var(--dim);padding:8px 0;margin-bottom:18px;display:inline-block}
+.back:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border:2px solid var(--fg);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;text-align:center}
+.btn:hover{background:var(--fg);color:var(--ink)}
+.btn.go{background:var(--neon);border-color:var(--neon);color:var(--ink)}
+.btn.go:hover{background:var(--fg);border-color:var(--fg)}
+.btn.thin{border-color:var(--line);color:var(--dim)}
+.btn.thin:hover{background:none;border-color:var(--fg);color:var(--fg)}
+.btn[disabled]{opacity:.3;pointer-events:none}
+.big{display:block;width:100%;border:2px solid var(--neon);padding:18px;margin-top:4px}
+.big b{display:block;font-size:20px;text-transform:uppercase;letter-spacing:-.01em;color:var(--neon)}
+.big span{display:block;font-size:14px;color:var(--soft);margin-top:4px}
+.big:hover{background:var(--neon)}
+.big:hover b,.big:hover span{color:var(--ink)}
+@media (prefers-reduced-motion:no-preference){
+.gl{position:relative;display:inline-block}
+.gl::after{content:attr(data-t);position:absolute;left:0;top:0;color:var(--neon);clip-path:inset(0 0 100% 0);animation:gl 7s infinite steps(1);pointer-events:none}
+@keyframes gl{0%,90%{clip-path:inset(0 0 100% 0);transform:none}91%{clip-path:inset(15% 0 60% 0);transform:translateX(4px)}93%{clip-path:inset(62% 0 10% 0);transform:translateX(-4px)}95%{clip-path:inset(0 0 100% 0)}}
+}
+.hero{display:flex;flex-direction:column;gap:16px;padding-bottom:24px;border-bottom:2px solid var(--line);margin-bottom:8px}
+.pct{font-size:clamp(64px,20vw,120px);font-weight:700;line-height:.85;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.pct small{font-size:.38em;letter-spacing:0}
+.sec{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;width:100%;padding:16px 0;border-bottom:1px solid var(--line)}
+.sec b{display:block;font-size:17px;text-transform:uppercase;letter-spacing:-.01em}
+.sec span{display:block;font-size:14px;color:var(--dim);margin-top:2px}
+.sec:hover b{color:var(--neon)}
+.sec .p{font-size:15px;font-variant-numeric:tabular-nums;text-align:right;min-width:52px}
+.bars{display:flex;gap:3px;align-items:flex-end;justify-content:flex-end;height:18px;margin-bottom:4px}
+.bars i{width:5px;background:var(--line)}
+.bars i.on{background:var(--neon)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.tile{border:2px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:6px}
+.tile b{font-size:15px;text-transform:uppercase;letter-spacing:.01em}
+.tile span{font-size:13.5px;color:var(--dim);line-height:1.4}
+.tile:hover{border-color:var(--fg)}
+.step{display:grid;grid-template-columns:44px 1fr;gap:14px;border:2px solid var(--line);padding:16px;width:100%}
+.step:hover{border-color:var(--fg)}
+.step .n{font-size:34px;font-weight:700;line-height:.9;color:var(--neon)}
+.step b{display:block;font-size:17px;text-transform:uppercase}
+.step span{display:block;font-size:14px;color:var(--soft);margin-top:3px}
+.step em{display:block;font-style:normal;font-size:12px;color:var(--dim);margin-top:6px;letter-spacing:.06em;text-transform:uppercase}
+.foot{margin-top:40px;font-size:12px;letter-spacing:.3em;color:#555}
+.warn{border-left:3px solid var(--neon);padding:6px 0 6px 12px;font-size:14px;color:var(--soft)}
+.sbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.sbar .back{margin:0}
+.log{display:flex;flex-direction:column}
+.entry{padding:22px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.meta{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.meta .r{color:var(--fg)}
+.ctx{font-size:15px;color:var(--soft);line-height:1.45}
+.line{font-size:clamp(19px,5.2vw,23px);font-weight:700;line-height:1.5;letter-spacing:-.01em}
+.line .bd{color:var(--neon)}
+.line .g,.noise .g{color:var(--dim);font-weight:400}
+.gapin{font:inherit;font-weight:700;color:var(--neon);background:transparent;border:0;border-bottom:2px solid var(--neon);border-radius:0;padding:0 2px;min-width:5ch;max-width:100%;caret-color:var(--neon)}
+.gapin::placeholder{color:#3d3d3d}
+.wide{width:100%;font-size:19px;padding:8px 2px}
+.dial{display:inline;font:inherit;font-weight:700;color:var(--neon);border-bottom:2px dashed var(--neon);padding:0 2px}
+.dial .k{font-weight:400;font-size:.6em;color:var(--dim);vertical-align:.25em;margin-left:4px}
+.dial.solo{display:inline-block;margin-top:2px}
+.ok{color:var(--neon)}
+.no{color:var(--dim);text-decoration:line-through;font-weight:400}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.go2{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--fg);padding:9px 14px}
+.go2:hover{background:var(--fg);color:var(--ink)}
+.go2[disabled]{opacity:.3;pointer-events:none}
+.mini{font-size:13px;color:var(--dim);text-decoration:underline;text-underline-offset:3px;padding:9px 4px}
+.hint{font-size:17px;letter-spacing:.06em;color:var(--soft)}
+.noise{font-size:clamp(17px,4.6vw,20px);letter-spacing:.05em;line-height:1.7;word-spacing:.2em}
+.noise .w{color:var(--fg)}
+.res{display:flex;flex-direction:column;gap:5px;font-size:15px;line-height:1.45}
+.res .tr{color:var(--soft)}
+.res .why{color:var(--dim)}
+.res .tag{color:var(--neon);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.06em}
+.cuts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cut{border:2px solid var(--line);padding:10px;display:flex;flex-direction:column;gap:6px}
+.cut:hover{border-color:var(--fg)}
+.cut span{font-size:12.5px;color:var(--soft);line-height:1.3}
+.cut.right{border-color:var(--neon)}
+.cut.off{opacity:.3}
+.cut.pick{border-color:var(--fg)}
+svg.tl{width:100%;height:auto;display:block}
+.tl .trk{stroke:var(--line);stroke-width:1}
+.tl .clip{fill:var(--fg)}
+.tl .ph{stroke:var(--neon);stroke-width:2}
+.tl .phl{fill:var(--neon);font-family:var(--f);font-size:8px;font-weight:700}
+.tl .lbl{fill:var(--dim);font-family:var(--f);font-size:7px}
+.tl .num{fill:var(--ink);font-family:var(--f);font-size:8px;font-weight:700}
+.tl .dot{fill:var(--neon)}
+.sum{padding:26px 0;display:flex;flex-direction:column;gap:14px}
+.noisebox{position:relative;border:2px solid var(--fg);aspect-ratio:3/1;max-width:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.noisebox canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
+.noisebox b{position:relative;font-size:clamp(28px,9vw,48px);letter-spacing:-.02em;mix-blend-mode:difference}
+.map{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.map i{aspect-ratio:1;background:var(--neon)}
+.map i.n{background:repeating-linear-gradient(45deg,var(--fg) 0 2px,var(--bg) 2px 4px)}
+.card{border-top:1px solid var(--line);padding:16px 0;display:flex;flex-direction:column;gap:6px}
+.card .en{font-size:19px;font-weight:700}
+.card .en[data-hide]{cursor:pointer}
+.card .ru{font-size:15px;color:var(--soft)}
+.card .ex{font-size:14px;color:var(--dim);font-style:italic}
+.form{font-size:15px;font-weight:700;color:var(--neon)}
+.kv{display:grid;grid-template-columns:96px 1fr;gap:5px 12px;font-size:14.5px}
+.kv dt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding-top:3px}
+.kv dd{margin:0;min-width:0}
+.sw{display:flex;border:2px solid var(--line);align-self:flex-start}
+.sw button{padding:9px 13px;font-size:13px;color:var(--dim)}
+.sw button.on{background:var(--fg);color:var(--ink)}
+.jing{border:2px solid var(--neon);padding:18px;display:flex;flex-direction:column;gap:12px}
+.jl{font-size:16px;line-height:1.7}
+.kw{border-bottom:2px solid var(--neon);cursor:pointer;font-weight:700}
+.kw.open{color:var(--neon)}
+.lv{display:flex;gap:4px}
+.lv i{width:22px;height:6px;background:var(--line)}
+.lv i.on{background:var(--neon)}
+.wf{width:100%;border-collapse:collapse;font-size:15px}
+.wf td{padding:11px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.wf td:first-child{color:var(--dim);font-size:13px;letter-spacing:.06em;white-space:nowrap}
+.wf .w{font-weight:700;font-size:17px}
+.wf .s{color:var(--neon)}
+.timer{font-size:clamp(110px,34vw,190px);font-weight:700;line-height:.85;letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+.rounds{display:flex;gap:8px}
+.rounds span{font-size:13px;font-weight:700;border:2px solid var(--line);padding:6px 10px;color:var(--dim)}
+.rounds span.on{border-color:var(--neon);color:var(--neon)}
+.rounds span.done{background:var(--fg);border-color:var(--fg);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;border:2px solid var(--line);padding:7px 10px}
+.chip.on{border-color:var(--neon);color:var(--neon)}
+textarea.code{width:100%;min-height:96px;background:transparent;color:var(--fg);border:2px solid var(--line);border-radius:0;padding:10px;font:13px/1.4 var(--f);word-break:break-all;resize:vertical}
+.list{display:flex;flex-direction:column}
+.list > div{padding:14px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+.list b{font-size:15px;text-transform:uppercase}
+.list span{font-size:14.5px;color:var(--soft)}
+.list em{font-style:normal;font-size:12px;color:var(--dim)}
+.src{font-size:13px;line-height:1.8;color:var(--dim);padding-left:18px;margin:0}
+.src a{color:var(--dim)}
+@media (max-width:430px){.grid2,.cuts{grid-template-columns:1fr}.kv{grid-template-columns:1fr}.kv dt{padding-top:6px}}
+</style><style>
+:root{--dim:#fff;--soft:#fff;--line:#fff;--f:"Geologica",system-ui,sans-serif;--d:"Climate Crisis","Arial Black",sans-serif;--h:"Poiret One",sans-serif;--o:"Oi","Arial Black",sans-serif}
+body{font-family:var(--f);font-size:14px;line-height:21px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+input,button{text-transform:uppercase;letter-spacing:inherit}
+.wrap{padding-left:max(30px,env(safe-area-inset-left,0px));padding-right:max(30px,env(safe-area-inset-right,0px))}
+h1{font-family:var(--d);font-weight:400;font-size:min(100px,calc((100vw - 64px)/6.1));line-height:.92;letter-spacing:-.07em}
+h2{font-family:var(--h);font-weight:400;font-size:clamp(30px,9vw,44px);line-height:1.05;letter-spacing:-.01em}
+h3,.sec b,.step b,.tile b,.list b{font-family:var(--h);font-weight:400;font-size:30px;line-height:1.05;letter-spacing:-.01em}
+.sec span,.step span,.tile span,.list span{font-size:14px;line-height:21px}
+.lab,.meta,.step em,.back,.mini{font-family:var(--f);font-weight:700;font-size:12px;line-height:16px;letter-spacing:.12em;color:#fff}
+.mini{text-decoration-thickness:3px}
+.foot{font-family:var(--d);font-weight:400;font-size:21px;letter-spacing:-.07em;color:#fff;margin-top:70px}
+.lab.neon,.noisebox b,h2.neon{font-family:var(--o);font-weight:400;letter-spacing:-.035em;color:var(--neon)}
+.lab.neon{font-size:21px;line-height:1.08}
+.noisebox b{mix-blend-mode:normal;background:#000;padding:3px 10px}
+.pct,.timer,.step .n,.sec .p{font-family:var(--d);font-weight:400;letter-spacing:-.07em}
+.line,.card .en{font-size:21px;line-height:30px;font-weight:800;letter-spacing:.01em}
+.ctx,.res,.res .tr,.res .why,.card .ru,.jl,.soft,.hint,.dial .k,.src,.src a,.no{color:#fff}
+.card .ex{font-style:normal;font-weight:700;font-size:12px;letter-spacing:.12em;color:var(--neon)}
+.line .g,.noise .g{color:#fff;font-weight:400}
+.gapin::placeholder{color:#fff;font-family:var(--h)}
+.btn,.go2{border-width:3px;font-weight:700;font-size:12px;letter-spacing:.12em}
+.btn:hover,.go2:hover{background:none;color:#fff;transform:translate(-3px,-3px);box-shadow:7px 7px 0 #fff}
+.btn.go:hover{background:var(--neon);border-color:var(--neon);color:#000}
+.btn.thin{border-width:1px;border-color:#fff;color:#fff}
+.btn.thin:hover{border-color:#fff}
+.btn[disabled],.go2[disabled]{opacity:1;border-style:dashed}
+.big{background:var(--neon);border:0;padding:21px}
+.big b{color:#000;font-family:var(--d);font-weight:400;font-size:30px;line-height:.92;letter-spacing:-.07em}
+.big span{color:#000;font-weight:700;font-size:12px;line-height:16px;letter-spacing:.1em;margin-top:10px}
+.big:hover{background:var(--neon);transform:translate(-3px,-3px);box-shadow:7px 7px 0 #fff}
+.big:hover b,.big:hover span{color:#000}
+.hero{border-bottom:7px solid #fff}
+.sec{border-bottom:1px solid #fff;padding:21px 0}
+.tile,.step,.cut,.chip,.sw,.rounds span{border:1px solid #fff}
+.tile:hover,.step:hover{border-color:#fff;transform:translate(-3px,-3px);box-shadow:7px 7px 0 #fff}
+.sw button{color:#fff}
+.rounds span{color:#fff}
+.jing{border:3px solid #fff;box-shadow:7px 7px 0 var(--neon);padding:21px}
+.kw{border-bottom-width:3px}
+.warn{border-left:7px solid var(--neon);color:#fff}
+.map i.n{background:#000;box-shadow:inset 0 0 0 3px #fff}
+.lv i,.bars i{background:#000;box-shadow:inset 0 0 0 1px #fff}
+.lv i.on,.bars i.on{background:var(--neon);box-shadow:none}
+.entry,.card,.list>div,.wf td{border-color:#fff}
+textarea.code{border:1px solid #fff;font-family:var(--f);text-transform:none}
+</style>
+</head><body><div class="wrap" id="app"></div><script>
+var SECTIONS={
+a:{name:"Вход и выход",sub:"первая и последняя минута: вопрос, план SPORT, вывод"},
+s:{name:"S · Характер",sub:"self-defence, self-respect, etiquette и карате"},
+p:{name:"P · Тело",sub:"stamina, suppleness, agility, on the ball"},
+o:{name:"O · Цена",sub:"sacrifices, determination, little / hardly any / far too much"},
+r:{name:"R · Правила",sub:"level playing field, own goal, move the goalposts"},
+v:{name:"T · Вершина",sub:"Esther Vergeer, 470 матчей, truly remarkable"}
+};
+var BANK={};
+var CUTS={};
+var ITEMS=[
+{id:"a1",w:"a",t:"type",src:1,q:"Let me ___ with a simple question.",a:["start the ball rolling"],h:"start the ball rolling",ru:"Позвольте начать с простого вопроса.",x:"Start the ball rolling — дать старт, начать."},
+{id:"a2",w:"a",t:"type",src:1,q:"Are you a spectator or a ___?",a:["competitor"],h:"competitor",ru:"Вы зритель или участник соревнований?",x:"Compete → competitor: тот, кто соревнуется."},
+{id:"a3",w:"a",t:"type",src:1,q:"Football is the most popular ___ sport in the world.",a:["spectator"],h:"spectator",ru:"Футбол — самый популярный зрелищный вид спорта в мире.",x:"Spectator sport — зрелищный спорт."},
+{id:"a4",w:"a",t:"mc",src:1,q:"Millions of fans watch it every weekend. ___, far fewer people actually play.",o:["However","Moreover","As a result"],a:"However",ru:"Миллионы фанатов смотрят каждые выходные. Однако играет гораздо меньше людей.",x:"However — поворот: смотрят многие, играют мало."},
+{id:"a5",w:"a",t:"mc",src:1,q:"However, far ___ people actually play.",o:["fewer","less","little"],a:"fewer",ru:"Однако на самом деле играет гораздо меньше людей.",x:"People исчисляемые → few / fewer."},
+{id:"a6",w:"a",t:"build",src:1,q:"Мой план легко запомнить: он складывается в слово SPORT.",a:"My plan is easy to remember, because it spells the word SPORT.",alt:["My plan is easy to remember: it spells the word SPORT.","My plan is easy to remember because it spells SPORT."],ru:"Мой план легко запомнить: он складывается в слово SPORT.",x:"Spell — складываться в слово по буквам."},
+{id:"a7",w:"a",t:"type",src:1,q:"To sum up, sport gives us self-confidence and a healthy body; ___, getting to the top requires sacrifice.",a:["however"],h:"however",ru:"Итак, спорт даёт уверенность и здоровое тело; однако путь на вершину требует жертв.",x:"Плюсы и цена рядом → however."},
+{id:"a8",w:"a",t:"type",src:1,q:"You don't have to win a gold ___ medal — you only need to start.",a:["olympic"],h:"Olympic",ru:"Не нужно выигрывать олимпийское золото — нужно только начать.",x:"Win a gold Olympic medal."},
+{id:"a9",w:"a",t:"type",src:1,q:"I hope that after these five minutes at least ___ of you will choose to compete.",a:["a few"],h:"a few",ru:"Надеюсь, после этих пяти минут хотя бы несколько из вас выберут соревноваться.",x:"A few = несколько (с надеждой), few = мало."},
+{id:"a10",w:"a",t:"build",src:1,q:"Спасибо за внимание! Есть вопросы?",a:"Thank you for listening! Are there any questions?",alt:["Thank you for listening! Any questions?","Thank you for your attention! Are there any questions?"],ru:"Спасибо за внимание! Есть вопросы?",x:"Thank you for listening — стандартная концовка."},
+{id:"a11",w:"a",t:"type",q:"Let's ___ — who wants to film the first take?",a:["start the ball rolling"],h:"start the ball rolling",ru:"Давайте начнём — кто снимет первый дубль?",x:"Start the ball rolling — запустить процесс."},
+{id:"a12",w:"a",t:"mc",q:"Где ударение в competitor?",o:["comPEtitor","COMpetitor","competiTOR"],a:"comPEtitor",ru:"Участник соревнований, конкурент.",x:"[kəmˈpetɪtə]"},
+{id:"a13",w:"a",t:"type",q:"Are you a ___ or a creator? Most people just watch.",a:["spectator"],h:"spectator",ru:"Ты зритель или создатель? Большинство просто смотрит.",x:"Spectator — тот, кто смотрит."},
+{id:"a14",w:"a",t:"mc",q:"I hope at least ___ of my friends will come to the screening.",o:["a few","a little","few"],a:"a few",ru:"Надеюсь, хотя бы несколько друзей придут на показ.",x:"Friends исчисляемые, с надеждой → a few."},
+{id:"s1",w:"s",t:"type",src:1,q:"People usually take up karate for the purpose of ___.",a:["self-defence","self-defense","self defence"],h:"self-defence",ru:"Обычно карате начинают ради самообороны.",x:"For the purpose of — ради чего-то."},
+{id:"s2",w:"s",t:"type",src:1,q:"It gives them self-confidence, self-control and ___.",a:["self-discipline","self discipline"],h:"self-discipline",ru:"Оно даёт им уверенность, самообладание и самодисциплину.",x:"Self-discipline — заставлять себя делать нужное."},
+{id:"s3",w:"s",t:"type",src:1,q:"Karate has strict ___, so good manners are expected at all times.",a:["etiquette"],h:"etiquette",ru:"В карате строгий этикет, поэтому хорошие манеры обязательны всегда.",x:"Etiquette [ˈetɪket] — этикет."},
+{id:"s4",w:"s",t:"type",src:1,q:"Good manners and ___ for others are expected at all times.",a:["consideration"],h:"consideration",ru:"Хорошие манеры и внимание к другим ожидаются всегда.",x:"Consideration for others — внимание к другим."},
+{id:"s5",w:"s",t:"type",src:1,q:"As a result, students build a real sense of ___.",a:["self-respect","self respect"],h:"self-respect",ru:"В итоге у учеников появляется настоящее самоуважение.",x:"Build a sense of self-respect."},
+{id:"s6",w:"s",t:"type",src:1,q:"Sport has a huge ___ on who you are.",a:["impact","influence"],h:"impact",ru:"Спорт сильно влияет на то, кто ты есть.",x:"Have an impact on — влиять на."},
+{id:"s7",w:"s",t:"mc",src:1,q:"People usually take ___ karate.",o:["up","on","off"],a:"up",ru:"Люди обычно начинают заниматься карате.",x:"Take up a sport — начать заниматься."},
+{id:"s8",w:"s",t:"mc",src:1,q:"___, karate has strict etiquette.",o:["What's more","However","To sum up"],a:"What's more",ru:"Более того, в карате строгий этикет.",x:"What's more — добавляет ещё один плюс."},
+{id:"s9",w:"s",t:"build",src:1,q:"Спорт тренирует не только тело.",a:"Sport doesn't only train your body.",alt:["Sport doesn't just train your body.","Sport trains not only your body.","Sport doesn't only train the body."],ru:"Спорт тренирует не только тело.",x:"Doesn't only — не только."},
+{id:"s10",w:"s",t:"build",src:1,q:"Возьмём, к примеру, боевые искусства.",a:"Take martial arts, for example.",alt:["For example, take martial arts."],ru:"Возьмём, к примеру, боевые искусства.",x:"Take … for example — возьмём для примера."},
+{id:"s11",w:"s",t:"type",q:"Posting every day for a month takes real ___.",a:["self-discipline","self discipline","commitment"],h:"self-discipline",ru:"Публиковать ролики каждый день месяц подряд — настоящая самодисциплина.",x:"Self-discipline — заставлять себя."},
+{id:"s12",w:"s",t:"mc",q:"Что значит self-control?",o:["держать себя в руках","уважать себя","защищать себя"],a:"держать себя в руках",ru:"Самообладание.",x:"Behaving calmly even when you are angry."},
+{id:"s13",w:"s",t:"type",q:"Reading hate comments calmly takes a lot of ___.",a:["self-control","self control"],h:"self-control",ru:"Спокойно читать хейт — нужно много самообладания.",x:"Self-control — спокойствие, даже когда злишься."},
+{id:"s14",w:"s",t:"mc",q:"I learnt a form of ___ — now I feel safer in the city.",o:["self-defence","self-respect","self-development"],a:"self-defence",ru:"Я освоила самооборону — теперь в городе мне спокойнее.",x:"Self-defence — защищать себя."},
+{id:"p1",w:"p",t:"type",src:1,q:"Regular training improves the body's physical ___ and suppleness.",a:["stamina"],h:"stamina",ru:"Регулярные тренировки улучшают выносливость и гибкость тела.",x:"Stamina [ˈstæmɪnə] — выносливость."},
+{id:"p2",w:"p",t:"type",src:1,q:"Regular training improves the body's physical stamina and ___.",a:["suppleness"],h:"suppleness",ru:"Регулярные тренировки улучшают выносливость и гибкость тела.",x:"Suppleness [ˈsʌplnəs] — гибкость, пластичность."},
+{id:"p3",w:"p",t:"type",src:1,q:"Tennis, swimming and karate exercise the ___ body.",a:["entire","whole"],h:"entire",ru:"Теннис, плавание и карате тренируют всё тело.",x:"Exercise the entire body."},
+{id:"p4",w:"p",t:"type",src:1,q:"So muscle imbalances don't ___.",a:["occur"],h:"occur",ru:"Поэтому мышечного дисбаланса не возникает.",x:"Occur [əˈkɜː] — происходить."},
+{id:"p5",w:"p",t:"type",src:1,q:"Your strength, coordination, flexibility and ___ improve on both sides of the body.",a:["agility"],h:"agility",ru:"Сила, координация, гибкость и ловкость улучшаются с обеих сторон тела.",x:"Agility [əˈdʒɪləti] — ловкость."},
+{id:"p6",w:"p",t:"type",src:1,q:"It lets an athlete react in a split second — in other words, to be on the ___.",a:["ball"],h:"ball",ru:"Она позволяет реагировать за долю секунды — то есть быть начеку.",x:"Be on the ball — быстро соображать."},
+{id:"p7",w:"p",t:"mc",src:1,q:"___ that, your strength and coordination improve.",o:["On top of","Instead of","Because of"],a:"On top of",ru:"Вдобавок улучшаются сила и координация.",x:"On top of that — вдобавок."},
+{id:"p8",w:"p",t:"mc",q:"Где ударение в stamina?",o:["STAmina","staMIna","stamiNA"],a:"STAmina",ru:"Выносливость.",x:"[ˈstæmɪnə]"},
+{id:"p9",w:"p",t:"mc",q:"Где ударение в agility?",o:["aGIlity","Agility","agiLIty"],a:"aGIlity",ru:"Ловкость.",x:"[əˈdʒɪləti]"},
+{id:"p10",w:"p",t:"build",src:1,q:"Регулярные тренировки улучшают выносливость.",a:"Regular training improves stamina.",alt:["Regular training improves your stamina.","Regular training improves the body's stamina."],ru:"Регулярные тренировки улучшают выносливость.",x:"Training неисчисляемое → improves."},
+{id:"p11",w:"p",t:"build",src:1,q:"Мышечного дисбаланса не возникает.",a:"Muscle imbalances don't occur.",alt:["Muscle imbalance doesn't occur."],ru:"Мышечного дисбаланса не возникает.",x:"Occur — без be."},
+{id:"p12",w:"p",t:"type",q:"Filming a dance video all day requires a lot of ___.",a:["stamina"],h:"stamina",ru:"Снимать танцевальное видео весь день — нужна огромная выносливость.",x:"Stamina — сила на долгое усилие."},
+{id:"p13",w:"p",t:"mc",src:1,q:"Personally, I think agility is the most ___ quality.",o:["underrated","overrated","unrated"],a:"underrated",ru:"Лично я считаю ловкость самым недооценённым качеством.",x:"Underrated — недооценённый."},
+{id:"p14",w:"p",t:"type",q:"A good dancer needs both strength and ___.",a:["flexibility","suppleness","agility"],h:"flexibility",ru:"Хорошему танцору нужны и сила, и гибкость.",x:"Flexibility — гибкость."},
+{id:"p15",w:"p",t:"build",q:"Танцы тренируют всё тело.",a:"Dancing exercises the entire body.",alt:["Dancing exercises the whole body.","Dance exercises the entire body."],ru:"Танцы тренируют всё тело.",x:"Exercise the entire body."},
+{id:"o1",w:"o",t:"type",src:1,q:"To get to the top, professional athletes push themselves to the ___.",a:["limit"],h:"limit",ru:"Чтобы добраться до вершины, профи доводят себя до предела.",x:"Push yourself to the limit."},
+{id:"o2",w:"o",t:"type",src:1,q:"A professional triathlete once wrote about the ___ she had made.",a:["sacrifices"],h:"sacrifices",ru:"Одна профессиональная триатлетка написала о жертвах, на которые пошла.",x:"Make sacrifices; жертв много → -s."},
+{id:"o3",w:"o",t:"mc",src:1,q:"very ___ free time",o:["little","few","a few"],a:"little",ru:"очень мало свободного времени",x:"Time неисчисляемое → little."},
+{id:"o4",w:"o",t:"mc",src:1,q:"___ any social life",o:["hardly","hard","almost"],a:"hardly",ru:"почти никакой личной жизни",x:"Hardly any — почти нет."},
+{id:"o5",w:"o",t:"mc",src:1,q:"far too ___ pain",o:["much","many","more"],a:"much",ru:"слишком много боли",x:"Pain неисчисляемое → much."},
+{id:"o6",w:"o",t:"type",src:1,q:"Some people would call that being ___ about sport.",a:["obsessive"],h:"obsessive",ru:"Кто-то назвал бы это одержимостью спортом.",x:"Obsessive about — одержимый чем-то."},
+{id:"o7",w:"o",t:"type",src:1,q:"___, I believe it's determination.",a:["nevertheless","however"],h:"Nevertheless",ru:"Тем не менее, я считаю, что это решимость.",x:"Nevertheless — тем не менее."},
+{id:"o8",w:"o",t:"type",src:1,q:"Determination is the refusal to let anything ___ you.",a:["stop"],h:"stop",ru:"Решимость — это отказ позволить чему-либо тебя остановить.",x:"Let + глагол без to."},
+{id:"o9",w:"o",t:"type",src:1,q:"It requires ___ commitment, mental toughness and the ability to handle mental intensity.",a:["ongoing"],h:"ongoing",ru:"Это требует постоянной преданности делу, силы воли и умения выдерживать напряжение.",x:"Ongoing commitment — постоянная преданность делу."},
+{id:"o10",w:"o",t:"type",src:1,q:"That's exactly what sets champions ___ from their competitors.",a:["apart"],h:"apart",ru:"Именно это отличает чемпионов от соперников.",x:"Set apart from — выделять среди."},
+{id:"o11",w:"o",t:"mc",src:1,q:"___ people have it.",o:["Few","A few","Little"],a:"Few",ru:"Мало у кого это есть.",x:"Few = мало (с сожалением)."},
+{id:"o12",w:"o",t:"build",src:1,q:"Чтобы добраться до вершины, нужно идти на жертвы.",a:"To get to the top, you have to make sacrifices.",alt:["To get to the top, you need to make sacrifices.","You have to make sacrifices to get to the top."],ru:"Чтобы добраться до вершины, нужно идти на жертвы.",x:"Make sacrifices — не do."},
+{id:"o13",w:"o",t:"type",q:"During exam week I had very ___ free time and hardly any sleep.",a:["little"],h:"little",ru:"В сессию у меня было очень мало свободного времени и почти не было сна.",x:"Time → little."},
+{id:"o14",w:"o",t:"mc",q:"Где ударение в sacrifice?",o:["SACrifice","saCRIfice","sacriFICE"],a:"SACrifice",ru:"Жертва.",x:"[ˈsækrɪfaɪs]"},
+{id:"o15",w:"o",t:"type",q:"Editing until 3 a.m. requires ongoing ___.",a:["commitment"],h:"commitment",ru:"Монтировать до трёх ночи — нужна постоянная преданность делу.",x:"Ongoing commitment."},
+{id:"o16",w:"o",t:"build",q:"Мало кто доходит до конца.",a:"Few people get to the end.",alt:["Few people reach the end.","Few people make it to the end."],ru:"Мало кто доходит до конца.",x:"Few = мало кто."},
+{id:"r1",w:"r",t:"type",src:1,q:"Every sport needs a level playing ___.",a:["field"],h:"field",ru:"Каждому спорту нужны равные условия.",x:"A level playing field — равные условия."},
+{id:"r2",w:"r",t:"type",src:1,q:"That's why we have ___ — to make sure players follow the rules.",a:["referees"],h:"referees",ru:"Поэтому есть судьи — следить, чтобы игроки соблюдали правила.",x:"Referee [ˌrefəˈriː]; их много → -s."},
+{id:"r3",w:"r",t:"type",src:1,q:"Unfortunately, some athletes ___ the rules, for example by doping.",a:["break"],h:"break",ru:"К сожалению, некоторые спортсмены нарушают правила, например допингом.",x:"Break the rules — нарушать."},
+{id:"r4",w:"r",t:"type",src:1,q:"In my view, that's scoring an ___ goal.",a:["own"],h:"own",ru:"По-моему, это гол в свои ворота.",x:"Score an own goal — навредить себе."},
+{id:"r5",w:"r",t:"type",src:1,q:"Another problem is when organisers move the ___.",a:["goalposts"],h:"goalposts",ru:"Другая проблема — когда организаторы меняют правила по ходу.",x:"Move the goalposts — менять условия на ходу."},
+{id:"r6",w:"r",t:"type",src:1,q:"Without fair play, sport becomes a whole new ___ game.",a:["ball"],h:"ball",ru:"Без честной игры спорт становится совсем другой историей.",x:"A whole new ball game — совсем другая ситуация."},
+{id:"r7",w:"r",t:"mc",src:1,q:"Referees make sure players ___ the rules.",o:["follow","obey to","keep up"],a:"follow",ru:"Судьи следят, чтобы игроки соблюдали правила.",x:"Follow the rules."},
+{id:"r8",w:"r",t:"mc",src:1,q:"___, some athletes break them.",o:["Unfortunately","Fortunately","Therefore"],a:"Unfortunately",ru:"К сожалению, некоторые их нарушают.",x:"Unfortunately — к сожалению."},
+{id:"r9",w:"r",t:"mc",q:"Где ударение в referee?",o:["refeREE","REferee","reFEree"],a:"refeREE",ru:"Судья.",x:"[ˌrefəˈriː]"},
+{id:"r10",w:"r",t:"build",src:1,q:"Честная игра — не просто красивая фраза.",a:"Fair play isn't just a nice phrase.",alt:["Fair play isn't just a beautiful phrase.","Fair play is not only a nice phrase."],ru:"Честная игра — не просто красивая фраза.",x:"Isn't just — не просто."},
+{id:"r11",w:"r",t:"build",src:1,q:"Они меняют правила посреди сезона.",a:"They change the rules in the middle of the season.",alt:["They change the rules in the middle of a season.","They change the rules mid-season."],ru:"Они меняют правила посреди сезона.",x:"In the middle of — посреди."},
+{id:"r12",w:"r",t:"type",q:"The client changed the brief three times — they keep moving the ___!",a:["goalposts"],h:"goalposts",ru:"Клиент трижды поменял ТЗ — постоянно меняет условия!",x:"Move the goalposts."},
+{id:"r13",w:"r",t:"type",q:"I deleted my best video by mistake — I scored an ___ goal.",a:["own"],h:"own",ru:"Я случайно удалила лучшее видео — гол в свои ворота.",x:"Own goal — сама себе навредила."},
+{id:"r14",w:"r",t:"type",q:"The teacher gave everyone the same questions, so it was a level playing ___.",a:["field"],h:"field",ru:"Преподаватель дал всем одинаковые вопросы — условия были равные.",x:"Level playing field."},
+{id:"r15",w:"r",t:"mc",q:"Changing the deadline the night before is…",o:["moving the goalposts","scoring an own goal","being on the ball"],a:"moving the goalposts",ru:"Перенести дедлайн в последнюю ночь — это менять условия на ходу.",x:"Goalposts — стойки ворот: их двигают."},
+{id:"v1",w:"v",t:"type",src:1,q:"The greatest modern athlete is the Dutch ___ tennis player Esther Vergeer.",a:["wheelchair"],h:"wheelchair",ru:"Величайшая спортсменка современности — нидерландская теннисистка на коляске Эстер Верхеер.",x:"Wheelchair tennis — теннис на колясках."},
+{id:"v2",w:"v",t:"type",src:1,q:"She was a truly ___ sportswoman.",a:["remarkable","outstanding","exceptional"],h:"remarkable",ru:"Она была по-настоящему выдающейся спортсменкой.",x:"Truly remarkable — по-настоящему выдающаяся."},
+{id:"v3",w:"v",t:"type",src:1,q:"What's ___ about her is that she went unbeaten for 470 matches in a row.",a:["extraordinary","amazing","remarkable"],h:"extraordinary",ru:"Поразительно то, что она не проиграла 470 матчей подряд.",x:"What's extraordinary about her is…"},
+{id:"v4",w:"v",t:"type",src:1,q:"She went ___ for 470 matches in a row.",a:["unbeaten"],h:"unbeaten",ru:"Она не проигрывала 470 матчей подряд.",x:"Go unbeaten — оставаться непобеждённой."},
+{id:"v5",w:"v",t:"type",src:1,q:"She won gold at several ___ Games.",a:["paralympic"],h:"Paralympic",ru:"Она выигрывала золото на нескольких Паралимпийских играх.",x:"Paralympic [ˌpærəˈlɪmpɪk]."},
+{id:"v6",w:"v",t:"type",src:1,q:"She became an ___ for people with disabilities.",a:["ambassador"],h:"ambassador",ru:"Она стала представителем людей с инвалидностью.",x:"Ambassador [æmˈbæsədə]."},
+{id:"v7",w:"v",t:"type",src:1,q:"___ many famous stars, she is far less known.",a:["compared to","compared with"],h:"Compared to",ru:"По сравнению со многими звёздами она гораздо менее известна.",x:"Compared to — по сравнению с."},
+{id:"v8",w:"v",t:"type",src:1,q:"However, she is ___ the greatest athlete of all time.",a:["arguably"],h:"arguably",ru:"Однако она, пожалуй, величайшая спортсменка всех времён.",x:"Arguably — пожалуй, можно утверждать."},
+{id:"v9",w:"v",t:"type",src:1,q:"There's no ___ she is a very determined person.",a:["doubt"],h:"doubt",ru:"Без сомнения, она очень целеустремлённый человек.",x:"There's no doubt — без сомнения."},
+{id:"v10",w:"v",t:"mc",src:1,q:"470 matches ___",o:["in a row","in a line","in turn"],a:"in a row",ru:"470 матчей подряд",x:"In a row — подряд."},
+{id:"v11",w:"v",t:"mc",src:1,q:"___ greatest modern athlete",o:["the","a","—"],a:"the",ru:"величайшая спортсменка современности",x:"Превосходная степень → the."},
+{id:"v12",w:"v",t:"build",src:1,q:"Около десяти лет без единого поражения!",a:"About ten years without a single defeat!",alt:["Almost ten years without a single defeat!","Nearly ten years without a single defeat!"],ru:"Около десяти лет без единого поражения!",x:"Without a single defeat."},
+{id:"v13",w:"v",t:"build",src:1,q:"Без сомнения, она очень целеустремлённый человек.",a:"There's no doubt she is a very determined person.",alt:["There is no doubt she is a very determined person.","There's no doubt that she is a very determined person.","There is no doubt that she is a very determined person."],ru:"Без сомнения, она очень целеустремлённый человек.",x:"Determined — целеустремлённый."},
+{id:"v14",w:"v",t:"mc",q:"Где ударение в Paralympics?",o:["ParaLYMpics","PAralympics","ParalymPICS"],a:"ParaLYMpics",ru:"Паралимпийские игры.",x:"[ˌpærəˈlɪmpɪks]"},
+{id:"v15",w:"v",t:"type",q:"Her performance in the short film was truly ___.",a:["remarkable","outstanding","amazing","exceptional","extraordinary"],h:"remarkable",ru:"Её игра в короткометражке была по-настоящему выдающейся.",x:"Truly + сильное прилагательное."},
+{id:"v16",w:"v",t:"build",q:"Она, пожалуй, лучший монтажёр на нашем курсе.",a:"She is arguably the best editor on our course.",alt:["She's arguably the best editor on our course.","She is arguably the best editor in our year.","She is arguably the best editor on our programme."],ru:"Она, пожалуй, лучший монтажёр на нашем курсе.",x:"Arguably + the best."}
+];
+var TENSES=[];
+var JINGLES={
+a:["[Good morning], everyone — I [start the ball rolling]:","[spectator] or [competitor]? Which way are you going?","[Football] has [fans] who are filling the stands,","[however], far [fewer] play sport with their hands.","My plan [spells] a word — [S-P-O-R-T], in a line,","[to sum up]: just [start] — and the [questions] are fine."],
+s:["[Self-defence] is the reason they [take up] karate,","but [self-confidence] comes, like a guest at a party.","[Self-control], [self-discipline], [etiquette] too,","[consideration for others] — expected of you.","[As a result], [self-respect] starts to grow:","sport has an [impact] on [who you are] — now you know."],
+p:["[Stamina], [suppleness] — say them with stress:","STA-mina, SUPP-leness, nothing less.","Karate and tennis [exercise the entire body],","[muscle imbalances] don't [occur] — not for anybody.","[On top of that]: [strength], [coordination], [agility] —","be [on the ball] with a split-second ability."],
+o:["[Push yourself to the limit] — the [top] is the prize,","the [triathlete] counted her [sacrifices]:","very [little] free time, [hardly any] fun,","[far too much] pain when the training is done.","[Obsessive]? No — [nevertheless], it's [determination],","[ongoing commitment], [mental toughness], concentration.","[Few] people have it — that [sets champions apart]."],
+r:["A [level playing field] — that's where it starts,","[referees] make sure that we [follow the rules] by heart.","[Unfortunately], some [break] them — [doping]'s the deal:","you [score an own goal], and the loss is real.","Don't [move the goalposts] in the [middle of the season],","or it's [a whole new ball game] — and that's no good reason."],
+v:["[Esther Vergeer], [wheelchair tennis] queen,","[four hundred and seventy] in a row — not a loss to be seen.","[Truly remarkable], [unbeaten] for years,","[Paralympic] gold and an [ambassador]'s cheers.","[What's extraordinary about her]? She never gave in —","[arguably the greatest], [no doubt] — determined to win."]
+};
+var CARDS={
+a:[["Good morning, everyone. Let me start the ball rolling with a simple question: are you a spectator or a competitor?","Всем доброе утро. Начну с простого вопроса: вы зритель или участник?","comPEtitor · SPECtator"],["Football is the most popular spectator sport in the world, and millions of fans watch it every weekend.","Футбол — самый популярный зрелищный спорт в мире, миллионы фанатов смотрят его каждые выходные.",""],["However, far fewer people actually play. Today I'd like to explain why that's a pity.","Однако играет гораздо меньше людей. Сегодня объясню, почему это жаль.",""],["My plan is easy to remember, because it spells the word SPORT: Self, Physical, Obsession, Rules and the Top.","Мой план легко запомнить: он складывается в слово SPORT.",""],["So, let's begin with S.","Итак, начнём с S.","→ слайд S"],["To sum up, sport gives us self-confidence and a healthy body; however, getting to the top requires sacrifice, determination and fair play.","Итак, спорт даёт уверенность и здоровое тело, но вершина требует жертв, решимости и честной игры.","финал"],["You don't have to win a gold Olympic medal — you only need to start.","Не нужно выигрывать олимпийское золото — нужно только начать.",""],["So, let me go back to my first question: spectator or competitor?","Вернусь к первому вопросу: зритель или участник?",""],["I hope that after these five minutes at least a few of you will choose to compete. Thank you for listening! Are there any questions?","Надеюсь, после этих пяти минут хотя бы несколько из вас выберут соревноваться. Спасибо! Вопросы?",""]],
+s:[["S stands for self. Take martial arts, for example.","S — это self, «себя». Возьмём, к примеру, боевые искусства.",""],["People usually take up karate for the purpose of self-defence.","Обычно карате начинают ради самообороны.",""],["However, they soon discover that it gives them much more: self-confidence, self-control and self-discipline.","Но скоро понимают, что оно даёт больше: уверенность, самообладание и самодисциплину.","self-DIScipline"],["What's more, karate has strict etiquette, so good manners and consideration for others are expected at all times.","Более того, в карате строгий этикет: манеры и внимание к другим обязательны всегда.","ETiquette · consideRAtion"],["As a result, students build a real sense of self-respect.","В итоге у учеников появляется настоящее самоуважение.",""],["In other words, sport doesn't only train your body — it has a huge impact on who you are.","Другими словами, спорт тренирует не только тело — он сильно влияет на то, кто ты есть.",""],["Of course, the body matters too. That's P.","Конечно, тело тоже важно. Это P.","→ слайд P"]],
+p:[["P is for physical. Regular training improves the body's physical stamina and suppleness.","P — physical. Регулярные тренировки улучшают выносливость и гибкость.","STAmina · SUPPleness"],["Tennis, swimming and karate exercise the entire body, so muscle imbalances don't occur.","Теннис, плавание и карате тренируют всё тело, поэтому мышечного дисбаланса не возникает.","ocCUR"],["On top of that, your strength, coordination, flexibility and agility improve on both sides of the body.","Вдобавок сила, координация, гибкость и ловкость улучшаются с обеих сторон тела.","aGIlity"],["Personally, I think agility is the most underrated quality: it lets an athlete react in a split second — in other words, to be on the ball.","Лично я считаю ловкость самым недооценённым качеством: она даёт реагировать за долю секунды — быть начеку.",""],["But all these benefits come at a price. Which brings me to O.","Но у всех этих плюсов есть цена. Переходим к O.","→ слайд O"]],
+o:[["O stands for obsession. To get to the top, professional athletes push themselves to the limit.","O — obsession, одержимость. Чтобы добраться до вершины, профи доводят себя до предела.","obSESSion"],["A professional triathlete once wrote about the sacrifices she had made: very little free time, hardly any social life and far too much pain.","Одна триатлетка написала о своих жертвах: очень мало свободного времени, почти никакой личной жизни и слишком много боли.","SACrifice · TRIathlete"],["Some people would call that being obsessive about sport.","Кто-то назвал бы это одержимостью спортом.",""],["Nevertheless, I believe it's determination — the refusal to let anything stop you.","Тем не менее, я считаю, что это решимость — отказ позволить чему-то тебя остановить.","determiNAtion"],["It requires ongoing commitment, mental toughness and the ability to handle mental intensity.","Это требует постоянной преданности делу, силы воли и умения выдерживать напряжение.","comMITment"],["Few people have it, and that's exactly what sets champions apart from their competitors.","Мало у кого это есть — именно это отличает чемпионов от соперников.",""],["However, determination means nothing if the game isn't fair. R.","Но решимость ничего не стоит, если игра нечестная. R.","→ слайд R"]],
+r:[["R is for rules. Every sport needs a level playing field.","R — rules, правила. Каждому спорту нужны равные условия.",""],["That's why we have referees — to make sure players follow the rules.","Поэтому есть судьи — следить, чтобы игроки соблюдали правила.","refeREE"],["Unfortunately, some athletes break them, for example by doping.","К сожалению, некоторые их нарушают, например допингом.",""],["In my view, that's scoring an own goal: you want to win, but you destroy your own career.","По-моему, это гол в свои ворота: хочешь победить, а рушишь свою карьеру.",""],["Another problem is when organisers move the goalposts and change the rules in the middle of a season.","Другая проблема — когда организаторы меняют правила посреди сезона.","GOALpost"],["So fair play isn't just a nice phrase — without it, sport becomes a whole new ball game, and not a good one.","Честная игра — не просто фраза: без неё спорт становится совсем другой историей, и не хорошей.","можно пропустить, если не успеваешь"],["Now, who shows all of this at once? Let's go to the top.","Кто показывает всё это сразу? Поднимаемся на вершину.","→ слайд T"]],
+v:[["T is for the top. In my opinion, the greatest modern athlete is the Dutch wheelchair tennis player Esther Vergeer.","T — the top. По-моему, величайшая спортсменка современности — нидерландская теннисистка на коляске Эстер Верхеер.","WHEELchair"],["She was a truly remarkable sportswoman.","Она была по-настоящему выдающейся спортсменкой.",""],["What's extraordinary about her is that she went unbeaten for 470 matches in a row — about ten years without a single defeat!","Поразительно, что она не проиграла 470 матчей подряд — около десяти лет без единого поражения!","four hundred and seventy · unBEATen"],["She won gold at several Paralympic Games and became an ambassador for people with disabilities.","Она выигрывала золото на нескольких Паралимпиадах и стала представителем людей с инвалидностью.","ParaLYMpic · amBASSador"],["Compared to many famous stars, she is far less known; however, she is arguably the greatest athlete of all time.","По сравнению со многими звёздами она гораздо менее известна, но, пожалуй, она величайшая спортсменка всех времён.",""],["There's no doubt she is a very determined person — and that's S, O and R in one person.","Без сомнения, она очень целеустремлённый человек — и в ней сразу S, O и R.",""],["So, what's the conclusion?","Итак, какой вывод?","→ финал"]]
+};
+var WF=[];
+var TALKS=[
+{en:"Opening: start the ball rolling, ask your question and present the S-P-O-R-T plan.",ru:"Вступление: вопрос залу и план из пяти букв.",ch:["start the ball rolling","spectator","competitor","however","far fewer","spells the word"]},
+{en:"S — what does sport give the mind? Use martial arts as your example.",ru:"S: что спорт даёт характеру, на примере карате.",ch:["take up karate","self-defence","self-confidence","etiquette","consideration for others","self-respect","impact on"]},
+{en:"P — what does regular training do to the body?",ru:"P: что тренировки дают телу.",ch:["stamina","suppleness","exercise the entire body","occur","on top of that","agility","on the ball"]},
+{en:"O — what is the price of getting to the top?",ru:"O: чем платят за вершину.",ch:["push to the limit","sacrifices","very little","hardly any","far too much","nevertheless","determination","sets apart"]},
+{en:"R — why does sport need fair play?",ru:"R: зачем спорту честная игра.",ch:["level playing field","referees","break the rules","own goal","move the goalposts","whole new ball game"]},
+{en:"T — present the greatest modern athlete.",ru:"T: величайшая спортсменка современности.",ch:["wheelchair tennis","truly remarkable","what's extraordinary about her","470 in a row","Paralympic","compared to","arguably the greatest"]},
+{en:"Finale: sum up and go back to your first question.",ru:"Финал: вывод и возврат к первому вопросу.",ch:["to sum up","however","gold Olympic medal","a few of you","thank you for listening"]}
+];
+var MODES=[
+["Повторить, пока не забылось","Собирает фразы, которые начали рассыпаться, и добавляет немного новых. Повтор на грани забывания закрепляет сильнее всего.","Cepeda и др., 2006; Rawson и Dunlosky"],
+["Проба вслепую","3 вопроса до текста. Попытка ответить до подсказки, даже неверная, делает разбор крепче.","Pan и Sana; Richland, Kornell, Kao"],
+["Текст и стишок","Речь части по фразам с переводом. Английский можно спрятать и вспоминать по русскому. Ключевые слова в стишке закрываются шумом.","Glisky и др., 1986; Ludke и др., 2014; Boers и Lindstromberg"],
+["Тренировка","12 вопросов вперемешку. Ошибка возвращается в конце, пока не ответишь сама. Перемешивание учит различать похожие фразы.","Adesope и др., 2017; Pan и др., 2019"],
+["Подсказка","Показывает ответ, но сначала почти весь в шуме, потом меньше. Метод исчезающих подсказок.","Glisky, Schacter, Tulving, 1986"],
+["Говорение на время","Одна часть речи, три пересказа: 60, 45 и 30 секунд. Повтор с сокращением времени делает речь беглой.","Nation, 1989; Boers, 2014"],
+["Контрольная","20 вопросов из всех частей речи, без подсказок и повторов. Как перед выступлением.","Adesope и др., 2017"],
+["Процент","Сколько фраз сейчас читается без шума. Каждая фраза после верного ответа живёт дольше: 1 день, потом 3, 7, 16, 35.","Cepeda и др., 2006"]
+];
+var SRC=[
+["Adesope, Trevisan, Sundararajan, 2017. Rethinking the Use of Tests","https://education.wsu.edu/documents/2018/01/rethinking-use-tests.pdf/"],
+["Cepeda et al., 2006. Distributed practice in verbal recall tasks","https://pubmed.ncbi.nlm.nih.gov/16719566/"],
+["Rawson, Dunlosky. Successive Relearning","https://journals.sagepub.com/doi/full/10.1177/09637214221100484"],
+["Dunlosky et al., 2013. Effective learning techniques","https://www.psychologicalscience.org/news/releases/which-study-strategies-make-the-grade.html"],
+["Glisky, Schacter, Tulving, 1986. Method of vanishing cues","https://pubmed.ncbi.nlm.nih.gov/3755140/"],
+["Pan, Sana. Pretesting versus posttesting","https://pure.athabascau.ca/en/publications/pretesting-versus-posttesting-comparing-the-pedagogical-benefits-/"],
+["Interleaved and blocked L2 grammar practice","https://sage.figshare.com/collections/The_role_of_working_memory_in_blocked_and_interleaved_grammar_practice_Proceduralization_of_L2_syntax/4925595"],
+["Ludke, Ferreira, Overy, 2014. Singing can facilitate foreign language learning","https://ferreiralab.faculty.ucdavis.edu/wp-content/uploads/sites/222/2015/05/Ludke-et-al.-2014_SingingForeignLanguage_Mem-Cog.pdf"],
+["Boers, Lindstromberg, Webb, 2014. Alliterative expressions","https://ir.lib.uwo.ca/edupub/91"],
+["Effects of the 4/3/2 activity revisited","https://discovery.ucl.ac.uk/10128571/1/LTR2021.pdf"],
+["Symons, Johnson, 1997. Self-reference effect in memory","https://digitalcommons.lib.uconn.edu/chip_docs/9"]
+];
+var DAY=864e5,INT=[0.5,1,3,7,16,35],KEY="pomekhi.sport.v1",GL="▓▒░#%&@$/\\<>*+=?";
+var S=fresh();
+function fresh(){return{it:{},jg:{},best:0,talks:0,t:0,bk:0,start:0,ps:0}}
+function valid(s){return s&&typeof s==="object"&&s.it&&typeof s.it==="object"}
+function loadLocal(){try{var s=JSON.parse(localStorage.getItem(KEY));if(valid(s))return s}catch(e){}return null}
+function idb(cb){try{var r=indexedDB.open("pomekhi.sport.v1",1);r.onupgradeneeded=function(){r.result.createObjectStore("s")};r.onsuccess=function(){cb(r.result)};r.onerror=function(){cb(null)}}catch(e){cb(null)}}
+function idbGet(cb){idb(function(db){if(!db)return cb(null);try{var g=db.transaction("s").objectStore("s").get("state");g.onsuccess=function(){cb(valid(g.result)?g.result:null)};g.onerror=function(){cb(null)}}catch(e){cb(null)}})}
+function idbPut(v){idb(function(db){if(!db)return;try{db.transaction("s","readwrite").objectStore("s").put(v,"state")}catch(e){}})}
+function save(){S.t=Date.now();if(!S.start)S.start=S.t;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}idbPut(JSON.parse(JSON.stringify(S)));askPersist()}
+function askPersist(){if(S.ps)return;S.ps=1;try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().then(function(g){S.ps=g?2:1})}catch(e){}}
+function boot(){var l=loadLocal();if(l)S=l;home();idbGet(function(d){if(d&&(!l||(d.t||0)>(l.t||0))){S=d;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(view==="home")home()}})}
+function byId(id){for(var i=0;i<ITEMS.length;i++)if(ITEMS[i].id===id)return ITEMS[i]}
+function inS(w){return ITEMS.filter(function(x){return x.w===w})}
+function mix(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function rnd(seed){var t=(seed+0x6D2B79F5)>>>0;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}
+function seen(id){var s=S.it[id];return!!(s&&s.seen)}
+function erosion(id){var s=S.it[id];if(!s||!s.seen)return 1;return Math.max(0,Math.min(1,(Date.now()-s.last)/DAY/(INT[s.b]*1.8)))}
+function mark(id,ok){var s=S.it[id]||{b:0};if(ok){s.b=s.seen?Math.min(5,s.b+1):1;s.last=Date.now()}else{s.b=0;s.last=Date.now()-0.54*DAY}s.seen=1;S.it[id]=s;save()}
+function sig(w){var a=w?inS(w):ITEMS,t=0;a.forEach(function(x){t+=1-erosion(x.id)});return Math.round(t/a.length*100)}
+function noisy(){return ITEMS.filter(function(x){return seen(x.id)&&erosion(x.id)>=0.55})}
+function erode(text,e,seed){var o="";for(var i=0;i<text.length;i++){var ch=text[i];if(/[A-Za-zА-Яа-яЁё0-9']/.test(ch)&&rnd(seed+i*7919)<e)o+='<span class="g" data-g>'+esc(GL[Math.floor(rnd(seed+i*31)*GL.length)])+"</span>";else o+=esc(ch)}return o}
+function norm(s){s=String(s||"").toLowerCase().replace(/[’‘`´]/g,"'").replace(/[“”"«»]/g,"").trim();s=s.replace(/won't/g,"will not").replace(/can't/g,"can not").replace(/cannot/g,"can not").replace(/n't/g," not").replace(/'ve\b/g," have").replace(/'m\b/g," am").replace(/'re\b/g," are").replace(/'ll\b/g," will");return s.replace(/[.!?,;:]/g," ").replace(/\s+/g," ").trim()}
+function wnorm(s){return String(s||"").toLowerCase().replace(/[’‘`´]/g,"'").replace(/[.!?,;:"«»“”]/g,"")}
+function answers(it){return it.t==="build"?[it.a].concat(it.alt||[]):(Array.isArray(it.a)?it.a:[it.a])}
+function say(t){try{if(!window.speechSynthesis)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="en-GB";u.rate=.92;speechSynthesis.speak(u)}catch(e){}}
+function spoken(it){if(it.say)return answers(it)[0];if(it.t==="cut")return it.q.replace(/\*\*/g,"");if(it.t==="build")return it.a;var q=it.q.split(" → ").pop().replace(/\s*\([^)]*\)/g,"");var p=(it.t==="mc"?it.a:answers(it)[0]).split(" / "),k=0;if(q.indexOf("___")<0)return it.t==="mc"?it.a:q;return q.replace(/___/g,function(){return p[Math.min(k++,p.length-1)]})}
+function clip(kind){var P=150,r="";function R(x,y,w,n){return'<rect class="clip" x="'+x+'" y="'+y+'" width="'+w+'" height="10"/>'+(n?'<text class="num" x="'+(x+w/2-2.5)+'" y="'+(y+8)+'">'+n+"</text>":"")}
+if(kind==="ps")[14,42,70,98,126,162,184].forEach(function(x){r+=R(x,12,8)});if(kind==="pc")r+=R(126,12,48);if(kind==="pp")r+=R(64,12,P-64)+'<circle class="dot" cx="'+P+'" cy="17" r="4"/>';if(kind==="pas")r+=R(66,12,16);if(kind==="pac")r+=R(30,30,94)+R(82,12,10);if(kind==="pap")r+=R(30,12,22,"1")+R(98,12,22,"2");
+return'<svg class="tl" viewBox="0 0 200 56" role="img" aria-label="'+esc(CUTS[kind].name)+'"><line class="trk" x1="0" y1="17" x2="200" y2="17"/><line class="trk" x1="0" y1="35" x2="200" y2="35"/><text class="lbl" x="2" y="52">ПРОШЛОЕ</text><text class="lbl" x="168" y="52">ДАЛЬШЕ</text>'+r+'<line class="ph" x1="'+P+'" y1="4" x2="'+P+'" y2="46"/><text class="phl" x="'+(P-15)+'" y="54">СЕЙЧАС</text></svg>'}
+function bars(p){var h="";for(var i=0;i<5;i++)h+='<i class="'+(p>i*20+5?"on":"")+'" style="height:'+(5+i*3)+'px"></i>';return'<div class="bars" aria-hidden="true">'+h+"</div>"}
+var app=document.getElementById("app"),view="home",sess=null,flick=null,talk=null,nzT=null;
+function show(h,v){view=v||view;app.innerHTML=h+'<div class="foot">ROTAZ</div>';window.scrollTo(0,0);flicker()}
+function calm(){return window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches}
+function flicker(){if(flick)clearInterval(flick);if(calm())return;flick=setInterval(function(){var g=app.querySelectorAll("[data-g]");for(var i=0;i<Math.min(12,g.length);i++){var el=g[Math.floor(Math.random()*g.length)];el.textContent=GL[Math.floor(Math.random()*GL.length)]}},170)}
+function back(to,label){return'<button class="back" data-go="'+to+'">← '+(label||"назад")+"</button>"}
+function stop(){if(talk&&talk.tm){clearInterval(talk.tm);talk.tm=null}if(nzT){clearInterval(nzT);nzT=null}}
+function home(){stop();var p=sig(),nz=noisy().length,n=ITEMS.filter(function(x){return seen(x.id)}).length;
+var cta=n===0?'<button class="big" data-cmd="clean"><b>Начать</b><span>12 вопросов из всех разделов · около 6 минут</span></button>':'<button class="big" data-cmd="clean"><b>Повторить, пока не забылось</b><span>'+(nz?nz+" фраз уже рассыпаются, плюс немного новых · около 5 минут":"Шума нет: возьмёшь 12 новых фраз · около 6 минут")+"</span></button>";
+var old=n>0&&Date.now()-(S.bk||S.start||Date.now())>7*DAY;
+var list=Object.keys(SECTIONS).map(function(w){var q=sig(w);return'<button class="sec" data-go="sec:'+w+'"><div><b>'+SECTIONS[w].name+"</b><span>"+SECTIONS[w].sub+" · "+inS(w).length+' вопросов</span></div><div class="p">'+bars(q)+q+"%</div></button>"}).join("");
+show('<section class="hero"><h1 class="gl" data-t="ПОМЕХИ">ПОМЕХИ</h1><p class="soft" style="font-size:17px;max-width:32em">Презентация SPORT наизусть: пять минут речи, шесть частей. Фразы, которые не повторяешь, рассыпаются в шум. Вспоминаешь — они возвращаются.</p><div class="row" style="align-items:flex-end;gap:16px"><div class="pct">'+p+'<small>%</small></div><div class="lab" style="padding-bottom:8px">столько фраз ты<br>сейчас помнишь</div></div>'+cta+(old?'<button class="warn" data-go="save">Неделя без кода сохранения. Сделай его, чтобы прогресс точно не пропал →</button>':"")+'</section><div class="lab" style="margin-top:22px">разделы</div>'+list+'<div class="grid2"><button class="tile" data-go="talk"><b>Говорение на время</b><span>Выбираешь тему и рассказываешь вслух 3 раза: 60, 45 и 30 секунд.</span></button><button class="tile" data-cmd="final"><b>Контрольная</b><span>20 вопросов из всех разделов, без подсказок. Как тест · 10 минут.</span></button><button class="tile" data-go="save"><b>Сохранение</b><span>Код и файл прогресса: перенести на другой телефон или вернуть.</span></button><button class="tile" data-go="about"><b>Как это устроено</b><span>Что делает каждый режим и на каких исследованиях он стоит.</span></button></div>',"home")}
+function section(w){stop();var p=sig(w),items=inS(w),fr=items.filter(function(x){return!seen(x.id)}).length;
+show(back("home","главная")+'<div class="stack" style="gap:16px"><h2>'+SECTIONS[w].name+'</h2><p class="dim">'+p+"% помнишь · "+items.length+" вопросов · "+fr+' ещё не открыты</p><button class="step" data-cmd="cold" data-w="'+w+'"><span class="n">1</span><span><b>Проба вслепую</b><span>3 вопроса до текста. Ошибаться можно: после промаха фраза запоминается лучше.</span><em>1 минута</em></span></button><button class="step" data-go="learn:'+w+'"><span class="n">2</span><span><b>Текст и стишок</b><span>Речь этой части по фразам с переводом и стишок. Английский можно спрятать и вспоминать.</span><em>3–5 минут</em></span></button><button class="step" data-cmd="drill" data-w="'+w+'"><span class="n">3</span><span><b>Тренировка</b><span>12 вопросов этого раздела вперемешку. Ошибки вернутся в конце.</span><em>около 6 минут</em></span></button></div>',"sec")}
+function jingle(w){var lv=S.jg[w]||0,e=[0,.45,.8,1][lv],b="";for(var i=1;i<=3;i++)b+='<i class="'+(lv>=i?"on":"")+'"></i>';
+var lines=JINGLES[w].map(function(l,li){return'<div class="jl">'+l.replace(/\[([^\]]+)\]/g,function(m,kw){var sd=hash(w+li+kw);return'<span class="kw" data-kw="'+esc(kw)+'" data-e="'+e+'" data-s="'+sd+'">'+(lv?erode(kw,e,sd):esc(kw))+"</span>"})+"</div>"}).join("");
+return'<div class="jing"><div class="row" style="justify-content:space-between"><span class="lab neon">стишок</span><span class="row" style="gap:8px"><span class="lab">закрыто</span><span class="lv">'+b+"</span></span></div>"+lines+'<p class="dim" style="font-size:14px">Прочитай вслух в ритм. «Закрыть больше» прячет ключевые слова в шум — вспоминай их. Тап по слову — подсмотреть.</p><div class="row"><button class="btn" data-cmd="jsay" data-w="'+w+'">Послушать</button><button class="btn go" data-cmd="jup" data-w="'+w+'"'+(lv>=3?" disabled":"")+'>Закрыть больше</button>'+(lv?'<button class="btn thin" data-cmd="jreset" data-w="'+w+'">Открыть всё</button>':"")+"</div></div>"}
+function learn(w,hide){stop();var body="";
+if(w==="t"){body='<p class="soft">Две дорожки, как в монтаже. Зелёная линия — сейчас. Время выбирается по тому, где лежит действие.</p>'+TENSES.map(function(c){var C=CUTS[c.k];return'<div class="card"><div class="row" style="justify-content:space-between"><h3>'+C.name+'</h3><span class="form">'+C.form+"</span></div>"+clip(c.k)+'<dl class="kv"><dt>когда</dt><dd>'+c.use+"</dd><dt>слова-маркеры</dt><dd>"+c.mark+'</dd><dt>пример</dt><dd style="font-style:italic">'+c.ex+"</dd><dt>ловушка</dt><dd>"+c.trap+"</dd></dl></div>"}).join("")}
+else if(w==="w"){body='<table class="wf"><tbody>'+WF.map(function(r){var wd=r[4]?'<span class="s">'+r[1]+"</span>"+r[2]:r[1]+'<span class="s">'+r[2]+"</span>";return"<tr><td>"+r[0]+'</td><td><div class="w">'+wd+'</div><div class="dim">'+r[3]+"</div></td></tr>"}).join("")+'</tbody></table><p class="soft">Главная ловушка — множественное число. Рядом стоит were, all the, five → добавь -s.</p>'}
+else{body='<div class="sw"><button class="'+(hide?"":"on")+'" data-go="learn:'+w+'">английский виден</button><button class="'+(hide?"on":"")+'" data-go="learnx:'+w+'">спрятать английский</button></div>'+(hide?'<p class="dim">Читай русский, вспомни английский, тапни по шуму.</p>':"")+CARDS[w].map(function(c){var en=hide?'<span class="en" data-hide="'+esc(c[0])+'">'+erode(c[0],1,hash(c[0]))+"</span>":'<span class="en">'+esc(c[0])+"</span>";return'<div class="card">'+en+'<div class="ru">'+c[1]+"</div>"+(c[2]?'<div class="ex">'+c[2]+"</div>":"")+"</div>"}).join("")}
+show(back("sec:"+w,SECTIONS[w].name.toLowerCase())+'<div class="stack" style="gap:18px"><h2>Текст и стишок</h2>'+body+jingle(w)+'<button class="big" data-cmd="drill" data-w="'+w+'"><b>К тренировке</b><span>12 вопросов этого раздела</span></button></div>',"learn")}
+function pick(mode,w){var pool=w?inS(w):ITEMS;
+if(mode==="cold"){var un=mix(pool.filter(function(x){return!seen(x.id)}));return(un.length>=3?un:mix(pool)).slice(0,3).map(function(x){return x.id})}
+if(mode==="drill")return mix(mix(pool).sort(function(a,b){return erosion(b.id)-erosion(a.id)}).slice(0,12)).map(function(x){return x.id});
+if(mode==="clean"){var nz=noisy().sort(function(a,b){return erosion(b.id)-erosion(a.id)}).slice(0,15);var nw=mix(ITEMS.filter(function(x){return!seen(x.id)})).slice(0,nz.length?Math.max(0,Math.min(6,12-nz.length)):12);var ids=nz.concat(nw);if(!ids.length)ids=mix(ITEMS).slice(0,12);return mix(ids).map(function(x){return x.id})}
+if(mode==="final"){var f=[];Object.keys(SECTIONS).forEach(function(k){mix(inS(k)).slice(0,3).forEach(function(x){f.push(x.id)})});mix(ITEMS.filter(function(x){return f.indexOf(x.id)<0})).slice(0,2).forEach(function(x){f.push(x.id)});return mix(f)}}
+var TITLES={cold:"Проба вслепую",drill:"Тренировка",clean:"Повторение",final:"Контрольная"};
+function start(mode,w){stop();var q=pick(mode,w);sess={mode:mode,w:w,q:q,i:0,first:{},clean:0,total:q.length,again:{},before:sig(w),marks:[],cur:null};
+var t=TITLES[mode]+(w&&mode!=="clean"?" · "+SECTIONS[w].name:"");
+show('<div class="sbar">'+back(w?"sec:"+w:"home","выйти")+'<span class="lab" id="left"></span></div><h2 style="margin-bottom:6px">'+t+"</h2>"+(mode==="final"?'<div class="noisebox"><canvas id="nz" width="120" height="40"></canvas><b>ON AIR</b></div><p class="dim" style="font-size:14px">Каждый верный ответ убирает часть шума.</p>':"")+'<div class="log" id="log"></div>',"run");
+if(mode==="final")noise();next()}
+function left(){var el=document.getElementById("left");if(el)el.textContent="осталось "+(sess.q.length-sess.i)}
+function parts(q){return q.split(/(\*\*[^*]+\*\*|___)/).filter(function(s){return s!==""})}
+function next(){if(sess.i>=sess.q.length)return finish();left();var id=sess.q[sess.i],it=byId(id),again=id in sess.first,n=sess.i+1;
+var meta='<div class="meta">'+(n<10?"0":"")+n+" · "+SECTIONS[it.w].name+(it.src?" · из речи":"")+(again?' · <span class="r">повтор</span>':"")+"</div>";
+var q=it.q,ctx=it.ctx||"";if(q.indexOf(" → ")>0){var sp=q.split(" → ");ctx=sp[0];q=sp[1]}
+var ctl="",line="",extra="",gaps=(q.match(/___/g)||[]).length;
+var hdr=it.t==="cut"?'<div class="meta">где на дорожке стоит выделенное действие?</div>':it.say?'<div class="meta">определение → слово</div>':it.t==="build"&&!it.ctx?'<div class="meta">переведи</div>':"";
+var segs=parts(q),gapDone=false;
+line=segs.map(function(s){if(s==="___"){if(gapDone)return'<span class="seg" data-t="___">___</span>';gapDone=true;if(it.t==="type"){var len=Math.max(6,answers(it)[0].length);return'<input class="gapin" id="ans" size="'+len+'" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="ответ">'}if(it.t==="mc"&&gaps===1)return'<button class="dial" id="dial" data-i="-1">выбери<span class="k">тап</span></button>';return'<span class="seg" data-t="___">___</span>'}var b=s.indexOf("**")===0;var t=b?s.slice(2,-2):s;return'<span class="seg'+(b?" bd":"")+'" data-t="'+esc(t)+'">'+esc(t)+"</span>"}).join("");
+if(it.t==="type"&&gaps===0)extra='<input class="gapin wide" id="ans" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="слово по-английски" aria-label="ответ">';
+if(it.t==="mc"&&gaps!==1)extra='<button class="dial solo" id="dial" data-i="-1">выбери вариант<span class="k">тап</span></button>';
+if(it.t==="build")extra='<div class="noise" id="nzl">'+it.a.split(" ").map(function(wd,k){return'<span data-k="'+k+'">'+erode(wd,1,hash(wd)+k)+"</span>"}).join(" ")+'</div><input class="gapin wide" id="ans" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="печатай по-английски" aria-label="перевод">';
+if(it.t==="cut")extra='<div class="cuts">'+mix(Object.keys(CUTS)).map(function(k){return'<button class="cut" data-cutk="'+k+'">'+clip(k)+"<span>"+CUTS[k].lab+"</span></button>"}).join("")+"</div>";
+var bank=it.bank?'<div class="dim" style="font-size:13.5px;line-height:1.6">'+BANK[it.bank]+"</div>":"";
+if(it.t!=="cut")ctl='<div class="ctl" id="ctl"><button class="go2" data-cmd="ok"'+(it.t==="mc"?" disabled":"")+'>Ответить ↵</button>'+(it.t==="type"&&sess.mode!=="final"?'<button class="mini" data-cmd="hint">подсказка</button>':"")+(it.t==="mc"?'<span class="dim" style="font-size:13px">тап по зелёному слову — следующий вариант</span>':"")+'</div><div class="hint" id="hint"></div>';
+var el=document.createElement("div");el.className="entry";el.innerHTML=meta+hdr+(ctx?'<div class="ctx">'+esc(ctx)+"</div>":"")+'<div class="line">'+line+"</div>"+extra+bank+ctl+'<div class="res" id="res"></div>';
+var log=document.getElementById("log");var prev=log.querySelector(".entry.live");if(prev){prev.classList.remove("live");["ans","dial","nzl","res","hint","ctl"].forEach(function(x){var o=prev.querySelector("#"+x);if(o)o.removeAttribute("id")})}
+el.classList.add("live");log.appendChild(el);
+sess.cur={id:id,it:it,el:el,pick:-1,opts:it.t==="mc"?mix(it.o):null,hint:0,tries:0,done:false};
+decode(el);
+var inp=el.querySelector("#ans");if(inp){inp.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();submit()}});try{inp.focus({preventScroll:true})}catch(x){}}
+if(sess.i)setTimeout(function(){el.scrollIntoView({behavior:calm()?"auto":"smooth",block:"nearest"})},40)}
+function decode(el){if(calm())return;var segs=[].slice.call(el.querySelectorAll(".line .seg"));if(!segs.length)return;var f=0;var t=setInterval(function(){f++;var e=Math.max(0,1-f/6);segs.forEach(function(s,i){var tx=s.getAttribute("data-t");s.innerHTML=e>0?erode(tx,e,hash(tx)+i+f):esc(tx)});if(f>=6)clearInterval(t)},45)}
+function dial(){var c=sess.cur;if(c.done)return;c.pick=(c.pick+1)%c.opts.length;var d=c.el.querySelector("#dial");d.innerHTML=esc(c.opts[c.pick])+'<span class="k">'+(c.pick+1)+"/"+c.opts.length+"</span>";var b=c.el.querySelector('[data-cmd="ok"]');if(b)b.disabled=false}
+function hint(){var c=sess.cur;if(c.done)return;c.hint++;var a=c.it.h||answers(c.it)[0];c.el.querySelector("#hint").innerHTML=c.hint>=3?esc(a):erode(a,c.hint===1?.75:.4,hash(a)+c.hint)}
+function submit(choice){var c=sess.cur;if(!c||c.done)return;var it=c.it,ok=false,user="";
+if(it.t==="mc"){if(c.pick<0)return;user=c.opts[c.pick];ok=user===it.a}
+if(it.t==="cut"){user=choice;ok=choice===it.a}
+if(it.t==="type"){user=c.el.querySelector("#ans").value;if(!user.trim())return;ok=answers(it).some(function(a){return norm(a)===norm(user)})}
+if(it.t==="build"){user=c.el.querySelector("#ans").value;if(!user.trim())return;ok=answers(it).some(function(a){return norm(a)===norm(user)});c.tries++;
+var tw=it.a.split(" "),uw=user.trim().split(/\s+/);tw.forEach(function(wd,k){var sp=c.el.querySelector('#nzl [data-k="'+k+'"]');if(ok||wnorm(uw[k])===wnorm(wd))sp.innerHTML='<span class="w">'+esc(wd)+"</span>"});
+if(!ok&&c.tries<2){c.el.querySelector("#res").innerHTML='<div class="why">Белые слова стоят верно. Исправь остальное.</div>';return}}
+c.done=true;var clean=ok&&!c.hint&&!(it.t==="build"&&c.tries>1);
+var first=!(c.id in sess.first);if(first){sess.first[c.id]=clean;mark(c.id,clean);sess.marks.push(clean?1:0);if(clean)sess.clean++}else if(clean){S.it[c.id].last=Date.now();save()}
+var retry=sess.mode==="drill"||sess.mode==="clean";if(!clean&&retry){sess.again[c.id]=(sess.again[c.id]||0)+1;if(sess.again[c.id]<=3)sess.q.splice(Math.min(sess.i+4,sess.q.length),0,c.id)}
+paint(c,ok,user,choice);sess.i++;if(sess.mode==="final")noise();next()}
+function paint(c,ok,user,choice){var it=c.it,el=c.el,right=it.t==="cut"?CUTS[it.a].name:(it.t==="mc"?it.a:answers(it)[0]);
+var inp=el.querySelector("#ans"),dl=el.querySelector("#dial");
+if(it.t==="type"&&inp){var sp=document.createElement("span");sp.innerHTML=ok?'<span class="ok">'+esc(user.trim())+"</span>":'<span class="no">'+esc(user.trim())+'</span> <span class="ok">'+esc(right)+"</span>";inp.replaceWith(sp)}
+if(it.t==="mc"&&dl){var s2=document.createElement("span");s2.innerHTML=ok?'<span class="ok">'+esc(user)+"</span>":'<span class="no">'+esc(user)+'</span> <span class="ok">'+esc(right)+"</span>";dl.replaceWith(s2)}
+if(it.t==="build"&&inp){var s3=document.createElement("div");s3.className="line";s3.innerHTML=ok?'<span class="ok">'+esc(user.trim())+"</span>":'<span class="no" style="font-size:.8em">'+esc(user.trim())+'</span><br><span class="ok">'+esc(it.a)+"</span>";inp.replaceWith(s3);var nl=el.querySelector("#nzl");if(nl)nl.remove()}
+if(it.t==="cut")el.querySelectorAll(".cut").forEach(function(b){var k=b.getAttribute("data-cutk");b.disabled=true;if(k===it.a)b.classList.add("right");else if(k===choice&&!ok)b.classList.add("pick");else b.classList.add("off")});
+var ctl=el.querySelector("#ctl");if(ctl)ctl.remove();var hn=el.querySelector("#hint");if(hn)hn.remove();
+var r="";if(it.t==="cut")r+='<div class="tag">'+CUTS[it.a].name+" · "+CUTS[it.a].form+"</div>";
+if(it.ru)r+='<div class="tr">'+esc(it.ru)+"</div>";if(!ok||it.t==="cut")r+='<div class="why">'+esc(it.x)+"</div>";
+r+='<div><button class="mini" data-say="'+esc(spoken(it))+'">послушать</button></div>';el.querySelector("#res").innerHTML=r}
+function noise(){var c=document.getElementById("nz");if(!c)return;var x=c.getContext("2d"),lv=1-sess.clean/sess.total;if(nzT)clearInterval(nzT);
+function draw(){var im=x.createImageData(120,40);for(var i=0;i<im.data.length;i+=4){var on=Math.random()<lv,g=Math.random(),ne=on&&g>.985;im.data[i]=on?(ne?55:255*g):0;im.data[i+1]=on?(ne?255:255*g):0;im.data[i+2]=on?(ne?8:255*g):0;im.data[i+3]=255}x.putImageData(im,0,0)}
+draw();if(!calm())nzT=setInterval(function(){if(!document.getElementById("nz")){clearInterval(nzT);return}draw()},90)}
+function finish(){if(nzT){clearInterval(nzT);nzT=null}var log=document.getElementById("log"),el=document.createElement("div");el.className="sum";var lf=document.getElementById("left");if(lf)lf.textContent="готово";
+if(sess.mode==="final"){var p=Math.round(sess.clean/sess.total*100);S.best=Math.max(S.best||0,p);save();
+el.innerHTML='<div class="lab">итог</div><div class="pct">'+p+'<small>%</small></div><p>Верно с первого раза '+sess.clean+" из "+sess.total+". Столько речи ты выдашь без подсказок. Лучший результат: "+S.best+'%.</p><div class="lab">карта ответов</div><div class="map">'+sess.marks.map(function(m){return'<i class="'+(m?"":"n")+'"></i>'}).join("")+'</div><p class="dim">Полосатые — ошибки. Они уже ждут в повторении.</p><div class="row"><button class="btn go" data-cmd="clean">Повторить ошибки</button><button class="btn" data-cmd="final">Ещё раз</button><button class="btn thin" data-go="home">На главную</button></div>'}
+else{var a=sig(sess.w);el.innerHTML='<div class="lab">готово</div><h2>'+sess.clean+" из "+sess.total+'</h2><p class="soft">верно с первого раза · '+(sess.w?SECTIONS[sess.w].name.toLowerCase():"всё вместе")+": "+sess.before+"% → "+a+'%</p><div class="row">'+(sess.mode==="cold"?'<button class="btn go" data-go="learn:'+sess.w+'">К тексту</button>':'<button class="btn go" data-cmd="'+sess.mode+'" data-w="'+(sess.w||"")+'">Ещё 12</button>')+'<button class="btn thin" data-go="home">На главную</button></div>'}
+log.appendChild(el);setTimeout(function(){el.scrollIntoView({behavior:calm()?"auto":"smooth",block:"start"})},40)}
+function talks(){stop();show(back("home","главная")+'<div class="stack" style="gap:12px"><h2>Говорение на время</h2><p class="soft">Выбери тему. Рассказываешь вслух одно и то же три раза: 60, 45 и 30 секунд. С каждым разом короче — фразы начинают выходить сами.</p>'+TALKS.map(function(m,i){return'<button class="sec" style="grid-template-columns:1fr" data-go="talk:'+i+'"><div><b style="text-transform:none;font-size:16px">'+esc(m.en)+"</b><span>"+esc(m.ru)+"</span></div></button>"}).join("")+"</div>","talk")}
+function talkOpen(i){stop();talk={i:i,r:0,used:{},t:0,tm:null};drawTalk()}
+function drawTalk(){var m=TALKS[talk.i],sx=[60,45,30],done=talk.r>=3;
+var rd=sx.map(function(s,k){return'<span class="'+(k<talk.r?"done":k===talk.r?"on":"")+'">'+s+" сек</span>"}).join("");
+show(back("talk","темы")+'<div class="stack" style="gap:18px"><div class="line">'+esc(m.en)+'</div><p class="dim">'+esc(m.ru)+'</p><div class="lab">постарайся вставить · тапни, если сказала</div><div class="chips">'+m.ch.map(function(c,k){return'<button class="chip'+(talk.used[k]?" on":"")+'" data-chip="'+k+'">'+esc(c)+"</button>"}).join("")+'</div><div class="rounds">'+rd+"</div>"+(done?'<h2 class="neon">Три раза есть</h2><p>Вставила '+Object.keys(talk.used).length+" из "+m.ch.length+'. Завтра расскажи то же самое один раз за 30 секунд.</p><div class="row"><button class="btn go" data-go="talk">Другая тема</button><button class="btn thin" data-go="home">На главную</button></div>':'<div class="timer" id="tm">'+(talk.t||sx[talk.r])+'</div><div class="row"><button class="btn go" data-cmd="tgo">'+(talk.tm?"Готово":"Старт · рассказ "+(talk.r+1))+'</button><button class="btn thin" data-cmd="tsay">Послушать тему</button></div>')+"</div>","talk1")}
+function tgo(){var sx=[60,45,30];function end(){clearInterval(talk.tm);talk.tm=null;talk.r++;talk.t=0;S.talks=(S.talks||0)+1;save();drawTalk()}
+if(talk.tm){end();return}talk.t=sx[talk.r];talk.tm=setInterval(function(){talk.t--;var e=document.getElementById("tm");if(e)e.textContent=talk.t;if(talk.t<=0)end()},1000);drawTalk()}
+function code(){var rows=[];Object.keys(S.it).forEach(function(id){var s=S.it[id];if(s.seen)rows.push(id+"."+s.b+"."+Math.round(s.last/36e5).toString(36))});var jg=Object.keys(S.jg).map(function(k){return k+S.jg[k]}).join("");var raw="P2|"+rows.join("~")+"|"+jg+"|"+(S.best||0)+"|"+(S.talks||0);try{return btoa(raw)}catch(e){return raw}}
+function uncode(str){var raw=String(str||"").trim();try{raw=atob(raw.replace(/\s+/g,""))}catch(e){}var p=raw.split("|");if(p[0]!=="P2")return false;var n=0;
+(p[1]||"").split("~").forEach(function(r){var f=r.split(".");if(f.length!==3||!byId(f[0]))return;var last=parseInt(f[2],36)*36e5,cur=S.it[f[0]];if(!cur||!cur.seen||cur.last<last){S.it[f[0]]={b:Math.min(5,+f[1]||0),last:last,seen:1};n++}});
+(p[2]||"").replace(/([a-z])(\d)/g,function(m,k,v){S.jg[k]=Math.max(S.jg[k]||0,+v)});S.best=Math.max(S.best||0,+p[3]||0);S.talks=Math.max(S.talks||0,+p[4]||0);save();return n+1}
+function saveView(msg){stop();var app2=window.navigator.standalone||(window.matchMedia&&matchMedia("(display-mode: standalone)").matches);var n=ITEMS.filter(function(x){return seen(x.id)}).length;
+show(back("home","главная")+'<div class="stack" style="gap:16px"><h2>Сохранение</h2>'+(msg?'<div class="warn">'+esc(msg)+"</div>":"")+'<p class="soft">Прогресс сохраняется сам после каждого ответа, сразу в два хранилища браузера. Сейчас в нём '+n+' фраз.</p><div class="list"><div><b>1. Добавь на экран «Домой»</b><span>'+(app2?"Уже сделано — ты сейчас в режиме приложения.":"Safari → кнопка «Поделиться» → «На экран Домой». Так сайт работает как приложение, и Safari не стирает его данные, пока ты им пользуешься.")+'</span></div><div><b>2. Код сохранения</b><span>Скопируй и положи в заметки. Вставишь на любом устройстве — прогресс вернётся.</span></div></div><textarea class="code" id="mycode" readonly>'+code()+'</textarea><div class="row"><button class="btn go" data-cmd="copy">Скопировать код</button><button class="btn" data-cmd="dl">Скачать файлом</button></div><div class="lab" style="margin-top:10px">вернуть прогресс</div><textarea class="code" id="incode" placeholder="вставь код сюда"></textarea><div class="row"><button class="btn" data-cmd="restore">Вернуть из кода</button><label class="btn thin" for="file">Открыть файл</label><input type="file" id="file" accept=".txt,text/plain" hidden></div><p class="dim" style="font-size:13.5px">При возврате ничего не теряется: из двух версий каждой фразы остаётся более свежая.</p></div>',"save");
+var f=document.getElementById("file");if(f)f.addEventListener("change",function(){var fl=f.files&&f.files[0];if(!fl)return;var rd=new FileReader();rd.onload=function(){var r=uncode(rd.result);saveView(r?"Прогресс возвращён.":"Файл не подошёл.")};rd.readAsText(fl)})}
+function about(){stop();var t="push yourself to the limit";show(back("home","главная")+'<div class="stack" style="gap:14px"><h2>Как это устроено</h2><div class="list"><div><b>Как фраза рассыпается</b><span class="noise">'+esc(t)+" → "+erode(t,.35,hash(t))+" → "+erode(t,.7,hash(t))+'</span><em>После верного ответа фраза снова чистая.</em></div>'+MODES.map(function(m){return"<div><b>"+m[0]+"</b><span>"+m[1]+"</span><em>"+m[2]+"</em></div>"}).join("")+'</div><div class="lab" style="margin-top:12px">думать по-английски</div><p class="soft">Внутренняя речь на втором языке растёт вместе с практикой вслух. Три привычки на день: проговаривай свои действия в Present Continuous («I\'m opening my laptop»); вечером перескажи день пятью фразами в прошедших временах; вместо «блин, забыла» — «I\'ve forgotten».</p><div class="lab" style="margin-top:12px">исследования</div><ol class="src">'+SRC.map(function(s){return'<li><a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+"</a></li>"}).join("")+"</ol></div>","about")}
+function route(r){var p=r.split(":");if(p[0]==="home")home();else if(p[0]==="sec")section(p[1]);else if(p[0]==="learn")learn(p[1]);else if(p[0]==="learnx")learn(p[1],true);else if(p[0]==="talk"){if(p[1]!=null)talkOpen(+p[1]);else talks()}else if(p[0]==="save")saveView();else if(p[0]==="about")about()}
+app.addEventListener("click",function(e){var b=e.target.closest("button,.kw,[data-hide],label");if(!b)return;
+if(b.hasAttribute("data-hide")){b.textContent=b.getAttribute("data-hide");b.removeAttribute("data-hide");return}
+if(b.classList.contains("kw")){if(b.classList.toggle("open"))b.textContent=b.getAttribute("data-kw");else b.innerHTML=erode(b.getAttribute("data-kw"),+b.getAttribute("data-e"),+b.getAttribute("data-s"));return}
+var g=b.getAttribute("data-go");if(g){route(g);return}
+if(b.hasAttribute("data-say")){say(b.getAttribute("data-say"));return}
+if(b.id==="dial"){dial();return}
+if(b.hasAttribute("data-cutk")){submit(b.getAttribute("data-cutk"));return}
+if(b.hasAttribute("data-chip")){var k=b.getAttribute("data-chip");if(talk.used[k])delete talk.used[k];else talk.used[k]=1;b.classList.toggle("on");return}
+var c=b.getAttribute("data-cmd"),w=b.getAttribute("data-w")||null;
+if(c==="clean")start("clean");else if(c==="final")start("final");else if(c==="cold")start("cold",w);else if(c==="drill")start(w?"drill":"clean",w);
+else if(c==="ok")submit();else if(c==="hint")hint();
+else if(c==="jsay")say(JINGLES[w].join(" ").replace(/[\[\]]/g,""));
+else if(c==="jup"){S.jg[w]=Math.min(3,(S.jg[w]||0)+1);save();learn(w);setTimeout(function(){var j=document.querySelector(".jing");if(j)j.scrollIntoView({block:"start"})},30)}
+else if(c==="jreset"){S.jg[w]=0;save();learn(w)}
+else if(c==="tgo")tgo();else if(c==="tsay")say(TALKS[talk.i].en);
+else if(c==="copy"){var ta=document.getElementById("mycode");var done=function(){S.bk=Date.now();save();b.textContent="Скопировано"};try{navigator.clipboard.writeText(ta.value).then(done,function(){ta.select();done()})}catch(x){ta.select();done()}}
+else if(c==="dl"){try{var bl=new Blob([code()],{type:"text/plain"}),a=document.createElement("a");a.href=URL.createObjectURL(bl);a.download="pomekhi-sport-"+new Date().toISOString().slice(0,10)+".txt";document.body.appendChild(a);a.click();a.remove();S.bk=Date.now();save()}catch(x){}}
+else if(c==="restore"){var r=uncode(document.getElementById("incode").value);saveView(r?"Прогресс возвращён.":"Код не подошёл. Проверь, что скопирован целиком.")}});
+boot();
+</script></body></html>
